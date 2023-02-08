@@ -1,5 +1,5 @@
 <template>
- <h1>{{a}}</h1>
+ <h1>{{num.b.c}}</h1>
  <button @click="add">Add</button>
 </template>
 <script>
@@ -7,19 +7,20 @@ import { defineComponent ,reactive,ref} from 'vue'
 
 export default defineComponent({
   setup () {
-    let a = ref(1)
-    const obj = {
-      a:1
-    }
-    let b =reactive(obj)
-    console.log(obj,b)
-    const add =()=>{
-
+    const data =reactive({
+      num:{
+        a:1,
+        b:{
+          c:1
+        }
+      }
+    })
+    const add=()=>{
+      data.num.b.c++
     }
     return {
-      a,
-      obj,
-      add,
+      ...data,
+      add
     }
   }
 })
